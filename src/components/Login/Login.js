@@ -9,8 +9,25 @@ const Login = (props) => {
   const [isEmailValid, setIsEmailValid] = useState();
   const [isPasswordValid, setIsPasswordValid] = useState();
 
+  // We don't want to check isFormValid for every keystroke
+  // We can wait for some time and then check
+  // so here if under 500ms new key is pressed
+  // cleanup code will clean the previous timer
+  // So now cleanup code runs for every keystroke but formValidity
+  // will be check only when 500ms passed and in between no key is pressed
   useEffect(() => {
-    setIsFormValid(emailInput.includes('@') && passwordInput.trim().length > 6);
+    const identifier = setTimeout(() => {
+      console.log('Checking form Validity!');
+      setIsFormValid(
+        emailInput.includes('@') && passwordInput.trim().length > 6
+      );
+    }, 500);
+
+    // Doing Cleanup work of previous useEffect()
+    return () => {
+      console.log('CLEANUP!');
+      clearTimeout(identifier);
+    };
   }, [emailInput, passwordInput]);
 
   const emailBlurHandler = () => {
