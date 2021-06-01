@@ -1,0 +1,33 @@
+.form-div {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+.form-div label {
+  margin: 0.55rem 0;
+  font-weight: bold;
+}
+.form-div input {
+  font-family: inherit;
+  padding: 0.5rem;
+  flex: 1;
+  outline: none;
+}
+.form-div input:focus {
+  border: 1px solid black;
+  background-color: rgb(225, 239, 248);
+}
+
+.invalid input {
+  border: 1px solid red;
+  background-color: rgb(238, 201, 201);
+}
+
+@media (min-width: 768px) {
+  .form-div {
+    flex-direction: row;
+  }
+  .form-div label {
+    width: 20%;
+  }
+}
