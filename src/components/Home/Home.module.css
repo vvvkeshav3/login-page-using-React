@@ -1,12 +1,12 @@
-.card{
-    height : 200px;
+.card {
+  height: 200px;
 }
-.btn{
-    display: block;
-    margin :auto;
+.btn {
+  display: block;
+  margin: auto;
 }
 
-.title{
-    padding : 1rem;
-    text-align : center;
+.title {
+  padding: 1rem;
+  text-align: center;
 }

@@ -13,7 +13,11 @@ const Input = React.forwardRef((props, ref) => {
   });
 
   return (
-    <div className={`${classes['form-div']} ${props.isValid === false ? classes.invalid : ''}`}>
+    <div
+      className={`${classes['form-div']} ${
+        props.isValid === false ? classes.invalid : ''
+      }`}
+    >
       <label htmlFor={props.id}>{props.label}</label>
       <input
         type={props.type}

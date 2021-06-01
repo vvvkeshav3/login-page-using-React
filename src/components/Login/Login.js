@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useReducer, useContext, useRef } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useReducer,
+  useContext,
+  useRef,
+} from 'react';
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
@@ -78,16 +84,14 @@ const Login = () => {
     dispatchPassword({ type: 'USER_INPUT', val: event.target.value });
   };
 
-
-
   const submitFormHandler = (event) => {
     event.preventDefault();
-    if(isFormValid){
-        authCtx.onLogin(emailState.value, passwordState.value);
-    } else if(!emailIsValid){
-        emailInputRef.current.focus();
-    } else{
-        passwordInputRef.current.focus();
+    if (isFormValid) {
+      authCtx.onLogin(emailState.value, passwordState.value);
+    } else if (!emailIsValid) {
+      emailInputRef.current.focus();
+    } else {
+      passwordInputRef.current.focus();
     }
   };
 
@@ -102,24 +106,23 @@ const Login = () => {
           value={emailState.value}
           onChange={emailChangeHandler}
           onBlur={emailBlurHandler}
-          isValid ={emailIsValid}
+          isValid={emailIsValid}
         ></Input>
         <Input
           id="password"
           ref={passwordInputRef}
           type="password"
-          label ="Password"
+          label="Password"
           value={passwordState.value}
           onChange={passwordChangeHandler}
           onBlur={passwordBlurHandler}
-          isValid ={passwordIsValid}
+          isValid={passwordIsValid}
         ></Input>
-{/* Now we want the button to enable always and we want that if on submitting, the
-input that is invalid, we will focus there */}
+
         <Button
           type="submit"
           className={classes.button}
-        //   disabled={!isFormValid}
+          //   disabled={!isFormValid}
         >
           Login
         </Button>

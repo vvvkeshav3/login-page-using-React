@@ -7,12 +7,12 @@
   outline: none;
   border: none;
   border-radius: 1em;
-  cursor : pointer;
+  cursor: pointer;
 }
 
 .button:hover,
-.button:active{
-    color : rgb(135, 188, 236);
+.button:active {
+  color: rgb(135, 188, 236);
 }
 
 button:disabled,

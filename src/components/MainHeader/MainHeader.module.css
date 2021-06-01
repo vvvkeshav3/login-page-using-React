@@ -1,11 +1,11 @@
-.header{
-    background-color : rgb(76, 60, 143);
-    margin : 0;
-    padding : 1rem;
-    display :flex;
-    justify-content: space-between;
+.header {
+  background-color: rgb(76, 60, 143);
+  margin: 0;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
 }
-.header h1{
-    margin : 0;
-    color : rgb(216, 228, 231);
+.header h1 {
+  margin: 0;
+  color: rgb(216, 228, 231);
 }
