@@ -2,10 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { AuthContextProvider } from './components/store/auth-context';
 
 ReactDOM.render(
-  <React.StrictMode>
+  // Making Context available all in app.js and its children
+  <AuthContextProvider>
     <App />
-  </React.StrictMode>,
+  </AuthContextProvider>,
   document.getElementById('root')
 );
