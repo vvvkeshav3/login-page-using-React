@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useReducer, useContext } from 'react';
+import React, { useState, useEffect, useReducer, useContext, useRef } from 'react';
 import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
@@ -46,6 +46,9 @@ const Login = () => {
   const { isValid: emailIsValid } = emailState;
   const { isValid: passwordIsValid } = passwordState;
 
+  const emailInputRef = useRef();
+  const passwordInputRef = useRef();
+
   useEffect(() => {
     const identifier = setTimeout(() => {
       console.log('Checking form Validity!');
@@ -75,9 +78,17 @@ const Login = () => {
     dispatchPassword({ type: 'USER_INPUT', val: event.target.value });
   };
 
+
+
   const submitFormHandler = (event) => {
     event.preventDefault();
-    authCtx.onLogin(emailState.value, passwordState.value);
+    if(isFormValid){
+        authCtx.onLogin(emailState.value, passwordState.value);
+    } else if(!emailIsValid){
+        emailInputRef.current.focus();
+    } else{
+        passwordInputRef.current.focus();
+    }
   };
 
   return (
@@ -85,6 +96,7 @@ const Login = () => {
       <form onSubmit={submitFormHandler}>
         <Input
           id="email"
+          ref={emailInputRef}
           type="email"
           label="E-mail"
           value={emailState.value}
@@ -94,6 +106,7 @@ const Login = () => {
         ></Input>
         <Input
           id="password"
+          ref={passwordInputRef}
           type="password"
           label ="Password"
           value={passwordState.value}
@@ -101,11 +114,12 @@ const Login = () => {
           onBlur={passwordBlurHandler}
           isValid ={passwordIsValid}
         ></Input>
-
+{/* Now we want the button to enable always and we want that if on submitting, the
+input that is invalid, we will focus there */}
         <Button
           type="submit"
           className={classes.button}
-          disabled={!isFormValid}
+        //   disabled={!isFormValid}
         >
           Login
         </Button>
