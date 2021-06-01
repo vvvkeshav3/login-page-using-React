@@ -3,12 +3,6 @@ import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
 
-// We can make it global because it does not depends on the data used in the component
-// and the react will call it automatically when dispatchfunc is called
-
-// We may not need reducer here, because we are checking isValid for every keystroke
-// But before we were checking only when blur
-//  take reducer here as an example of usage
 const emailReducer = (state, action) => {
   if (action.type === 'USER_INPUT') {
     return { value: action.val, isValid: action.val.includes('@') };
@@ -36,10 +30,6 @@ const Login = (props) => {
   //   const [isPasswordValid, setIsPasswordValid] = useState();
   const [isFormValid, setIsFormValid] = useState(false);
 
-  // emailState is the state snapshot
-  // dispatchEmail is a func to dispatch a new Action
-  // emailReducer is a function that is triggered automatically
-  // once an action is dispatched
   const [emailState, dispatchEmail] = useReducer(emailReducer, {
     value: '',
     isValid: null,
@@ -65,9 +55,6 @@ const Login = (props) => {
       clearTimeout(identifier);
     };
   }, [emailIsValid, passwordIsValid]);
-  //   Now it even reduces the no. of times useEffect Called because we are using useEffect
-  // only when the valid state of email and password change
-  // now we may not need timeout
 
   const emailBlurHandler = () => {
     dispatchEmail({ type: 'INPUT_BLUR' });
@@ -78,9 +65,6 @@ const Login = (props) => {
   };
 
   const emailChangeHandler = (event) => {
-    // dispatchFn(action);
-    // action can be a string , a number or anything
-    // but in most of the cases we pass an object
     dispatchEmail({ type: 'USER_INPUT', val: event.target.value });
   };
 
@@ -118,15 +102,13 @@ const Login = (props) => {
             className={passwordState.isValid === false ? classes.invalid : ''}
           />
         </div>
-        <div className={classes['div-btn']}>
-          <Button
-            type="submit"
-            className={classes.button}
-            disabled={!isFormValid}
-          >
-            Login
-          </Button>
-        </div>
+        <Button
+          type="submit"
+          className={classes.button}
+          disabled={!isFormValid}
+        >
+          Login
+        </Button>
       </form>
     </Card>
   );

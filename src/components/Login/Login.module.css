@@ -26,8 +26,9 @@
     background-color: rgb(238, 201, 201);
 }
 
-.div-btn {
-  text-align: center;
+button {
+    display: block;
+    margin :auto;
 }
 
 @media (min-width: 768px) {

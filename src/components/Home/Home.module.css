@@ -1,6 +1,10 @@
 .card{
     height : 200px;
 }
+.btn{
+    display: block;
+    margin :auto;
+}
 
 .title{
     padding : 1rem;
